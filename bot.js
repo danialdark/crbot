@@ -25,9 +25,9 @@ async function makeMessage(key, data, server) {
   const updatedDateTime = originalDateTime.add(3, 'hours').add(30, 'minutes');
   const formattedUpdatedDateTime = updatedDateTime.format('YYYY-MM-DD HH:mm:ss');
 
-  return `✅ ${server} Server \n
-  ${key} : ${changedData["1m"][0].c} \n
-   time: ${formattedUpdatedDateTime} `
+  return `✅ ${server} Server 
+  ${key} : ${changedData["1m"][0].c} 
+  Time: ${formattedUpdatedDateTime} `
 }
 
 

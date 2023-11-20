@@ -1,7 +1,7 @@
 const TelegramBot = require('node-telegram-bot-api');
 const bot = new TelegramBot('6372105023:AAENq18ynY1CIpQI7QCUZRkT9UD3aL2AWNE', { polling: true });
 const channelUsername = '@crbdsm';
-
+const moment = require("moment")
 const Redis = require('ioredis');
 
 // Connect to the first Redis server
@@ -19,6 +19,14 @@ const client2 = new Redis({
 });
 
 
+async function makeMessage(data) {
+  const changedData = JSON.parse(key, data, server)
+  const formattedDateTime = moment(changedData["1m"][0].t).utcOffset(0).format('YYYY-MM-DD HH:mm:ss');
+
+  return `${key}: ${changedData["1m"][0].c} time: ${formattedDateTime} on ${server} Server`
+}
+
+
 
 async function sendMessage(channelUsername, message) {
   // Send a message to the channel
@@ -29,10 +37,10 @@ async function sendMessage(channelUsername, message) {
 async function getRedisData(key, client, serverName) {
   const data = await client.get(key)
   if (data != null) {
-    sendMessage(channelUsername, `${serverName} is active`)
-    console.log(`${serverName} is active`)
+    const message = await makeMessage(key.toUpperCase(), data, serverName)
+    sendMessage(channelUsername, message)
   } else {
-    sendMessage(channelUsername, `***********${serverName} is deactive*******`)
+    // sendMessage(channelUsername, `***********${serverName} is deactive*******`)
     console.log(`${serverName} is deactive`)
 
   }

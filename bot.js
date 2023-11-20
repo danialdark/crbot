@@ -21,7 +21,7 @@ const client2 = new Redis({
 
 async function makeMessage(key, data, server) {
   const changedData = JSON.parse(data)
-  const formattedDateTime = moment(changedData["1m"][0].t).utcOffset(0).format('YYYY-MM-DD HH:mm:ss');
+  const formattedDateTime = moment(changedData["1m"][0].t).format('YYYY-MM-DD HH:mm:ss');
 
   return `${key}: ${changedData["1m"][0].c} time: ${formattedDateTime} on ${server} Server`
 }

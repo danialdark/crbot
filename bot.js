@@ -39,6 +39,8 @@ async function getRedisData(key, client, serverName) {
   if (data != null) {
     const message = await makeMessage(key.toUpperCase(), data, serverName)
     sendMessage(channelUsername, message)
+    console.log(`${message} `)
+
   } else {
     // sendMessage(channelUsername, `***********${serverName} is deactive*******`)
     console.log(`${serverName} is deactive`)

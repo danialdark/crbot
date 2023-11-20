@@ -53,7 +53,7 @@ async function getRedisData(key, client, serverName) {
 setInterval(async () => {
   await getRedisData("btcusdt", client1, "nvmeData")
   await getRedisData("btcusdt", client2, "sataData")
-}, 2000);
+}, 60000);
 
 
 

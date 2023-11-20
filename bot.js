@@ -21,7 +21,7 @@ const client2 = new Redis({
 
 async function makeMessage(key, data, server) {
   const changedData = JSON.parse(data)
-  const formattedDateTime = moment(changedData["1m"][0].t+12600).format('YYYY-MM-DD HH:mm:ss');
+  const formattedDateTime = moment((changedData["1m"][0].t) + 12600).format('YYYY-MM-DD HH:mm:ss');
 
   return `✅ ${key}: ${changedData["1m"][0].c} time: ${formattedDateTime} on ${server} Server`
 }
@@ -38,7 +38,7 @@ async function getRedisData(key, client, serverName) {
   const data = await client.get(key)
   if (data != null) {
     const message = await makeMessage(key.toUpperCase(), data, serverName)
-    sendMessage(channelUsername, message)
+    // sendMessage(channelUsername, message)
     console.log(`✅ ${message} `)
 
   } else {

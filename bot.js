@@ -1,6 +1,6 @@
 const TelegramBot = require('node-telegram-bot-api');
 const bot = new TelegramBot('6372105023:AAENq18ynY1CIpQI7QCUZRkT9UD3aL2AWNE', { polling: true });
-const channelUsername = '@wBhFCZhmDHIwY2Rk';
+const channelUsername = '@crbdsm';
 
 const Redis = require('ioredis');
 
@@ -43,7 +43,7 @@ async function getRedisData(key, client, serverName) {
 setInterval(async () => {
   await getRedisData("btcusdt", client1, "nvmeData")
   await getRedisData("btcusdt", client2, "sataData")
-}, 2000);
+}, 60000);
 
 
 

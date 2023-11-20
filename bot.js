@@ -1,6 +1,6 @@
 const TelegramBot = require('node-telegram-bot-api');
 const bot = new TelegramBot('6372105023:AAENq18ynY1CIpQI7QCUZRkT9UD3aL2AWNE', { polling: true });
-const channelUsername = '@crtrest';
+const channelUsername = 'https://t.me/+wBhFCZhmDHIwY2Rk';
 
 const Redis = require('ioredis');
 

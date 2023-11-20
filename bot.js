@@ -21,9 +21,9 @@ const client2 = new Redis({
 
 async function makeMessage(key, data, server) {
   const changedData = JSON.parse(data)
-  const formattedDateTime = moment((changedData["1m"][0].t) + 12600).format('YYYY-MM-DD HH:mm:ss');
-
-  return `✅ ${key}: ${changedData["1m"][0].c} time: ${formattedDateTime} on ${server} Server`
+  const originalDateTime = moment(changedData["1m"][0].t);
+  const updatedDateTime = originalDateTime.add(3, 'hours').add(30, 'minutes');
+  return `✅ ${key}: ${changedData["1m"][0].c} time: ${updatedDateTime} on ${server} Server`
 }
 
 

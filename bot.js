@@ -23,7 +23,11 @@ async function makeMessage(key, data, server) {
   const changedData = JSON.parse(data)
   const originalDateTime = moment(changedData["1m"][0].t);
   const updatedDateTime = originalDateTime.add(3, 'hours').add(30, 'minutes');
-  return `✅ ${key}: ${changedData["1m"][0].c} time: ${updatedDateTime} on ${server} Server`
+  const formattedUpdatedDateTime = updatedDateTime.format('YYYY-MM-DD HH:mm:ss');
+
+  return `✅ ${server} Server \n
+  ${key} : ${changedData["1m"][0].c} \n
+   time: ${formattedUpdatedDateTime} `
 }
 
 

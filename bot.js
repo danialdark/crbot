@@ -23,7 +23,7 @@ async function makeMessage(key, data, server) {
   const changedData = JSON.parse(data)
   const formattedDateTime = moment(changedData["1m"][0].t).format('YYYY-MM-DD HH:mm:ss');
 
-  return `${key}: ${changedData["1m"][0].c} time: ${formattedDateTime} on ${server} Server`
+  return `✅ ${key}: ${changedData["1m"][0].c} time: ${formattedDateTime} on ${server} Server`
 }
 
 
@@ -42,7 +42,7 @@ async function getRedisData(key, client, serverName) {
     console.log(`✅ ${message} `)
 
   } else {
-    // sendMessage(channelUsername, `***********${serverName} is deactive*******`)
+    sendMessage(channelUsername, `❌❌❌❌❌${serverName} is deactive ❌❌❌❌❌`)
     console.log(`${serverName} is deactive ❌`)
 
   }
@@ -53,7 +53,7 @@ async function getRedisData(key, client, serverName) {
 setInterval(async () => {
   await getRedisData("btcusdt", client1, "nvmeData")
   await getRedisData("btcusdt", client2, "sataData")
-}, 60000);
+}, 2000);
 
 
 

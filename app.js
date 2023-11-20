@@ -20,7 +20,7 @@ const client2 = new Redis({
 
 
 
-async function sendMessage() {
+async function sendMessage(channelUsername, message) {
   // Send a message to the channel
   await bot.sendMessage(channelUsername, message)
 
@@ -30,8 +30,11 @@ async function getRedisData(key, client, serverName) {
   const data = await client.get(key)
   if (data != null) {
     sendMessage(channelUsername, `${serverName} is active`)
+    console.log(`${serverName} is active`)
   } else {
     sendMessage(channelUsername, `***********${serverName} is deactive*******`)
+    console.log(`${serverName} is deactive`)
+
   }
 }
 

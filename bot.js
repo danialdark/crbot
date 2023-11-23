@@ -1,6 +1,7 @@
 const TelegramBot = require('node-telegram-bot-api');
 const bot = new TelegramBot('6372105023:AAENq18ynY1CIpQI7QCUZRkT9UD3aL2AWNE', { polling: true });
 const channelUsername = '@crbdsm';
+const errorChanel = '@errocrbdsm';
 const moment = require("moment")
 const Redis = require('ioredis');
 
@@ -47,6 +48,7 @@ async function getRedisData(key, client, serverName) {
 
   } else {
     sendMessage(channelUsername, `❌❌❌❌❌${serverName} is deactive ❌❌❌❌❌`)
+    sendMessage(errorChanel, `❌❌❌❌❌${serverName} is deactive ❌❌❌❌❌`)
     console.log(`${serverName} is deactive ❌`)
 
   }

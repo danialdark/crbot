@@ -27,6 +27,11 @@ const client3 = new Redis({
 
 
 async function makeMessage(key, data, server) {
+
+  if (data == "ok") {
+    return `✅ ${server} Server`
+  }
+
   const changedData = JSON.parse(data)
   const originalDateTime = moment(changedData["1m"][0].t);
   const updatedDateTime = originalDateTime.add(3, 'hours').add(30, 'minutes');
@@ -47,7 +52,6 @@ async function sendMessage(channelUsername, message) {
 
 async function getRedisData(key, client, serverName) {
   const data = await client.get(key)
-  console.log(data)
   if (data != null) {
     const message = await makeMessage(key.toUpperCase(), data, serverName)
     sendMessage(channelUsername, message)
@@ -61,13 +65,14 @@ async function getRedisData(key, client, serverName) {
   }
 }
 
+getRedisData("status", client3, "Bourse")
 
 
-setInterval(async () => {
-  await getRedisData("btcusdt", client1, "NVME")
-  await getRedisData("btcusdt", client2, "SATA")
-  await getRedisData("status", client3, "Bourse")
-}, 60000);
+// setInterval(async () => {
+//   await getRedisData("btcusdt", client1, "NVME")
+//   await getRedisData("btcusdt", client2, "SATA")
+//   await getRedisData("status", client3, "Bourse")
+// }, 60000);
 
 
 

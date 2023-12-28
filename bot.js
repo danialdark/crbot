@@ -70,7 +70,7 @@ async function getRedisData(key, client, serverName) {
 setInterval(async () => {
   await getRedisData("btcusdt", client1, "NVME")
   await getRedisData("btcusdt", client2, "SATA")
-  await getRedisData("status", client3, "Bourse")
+  // await getRedisData("status", client3, "Bourse")
 }, 60000);
 
 

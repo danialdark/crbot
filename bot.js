@@ -57,8 +57,7 @@ async function getRedisData(key, client, serverName) {
   date.setUTCMinutes(date.getUTCMinutes() + 30);
   var updatedHours = date.getUTCHours();
   var updatedMinutes = date.getUTCMinutes();
-
-  if (key == "status" && (updatedHours >= 17 || (updatedHours <= 10 && updatedMinutes < 30))) {
+  if (key == "status" && (updatedHours >= 17 || (updatedHours <= 10 || (updatedHours <= 10 && updatedMinutes < 30)))) {
     return true;
   }
 
@@ -78,12 +77,12 @@ async function getRedisData(key, client, serverName) {
 
 
 
-setInterval(async () => {
-  await getRedisData("btcusdt", client1, "NVME")
-  await getRedisData("btcusdt", client2, "SATA")
-  await getRedisData("status", client3, "Bourse")
-}, 60000);
+// setInterval(async () => {
+//   await getRedisData("btcusdt", client1, "NVME")
+//   await getRedisData("btcusdt", client2, "SATA")
+// }, 60000);
 
+getRedisData("status", client3, "Bourse")
 
 
 

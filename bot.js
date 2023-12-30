@@ -51,6 +51,17 @@ async function sendMessage(channelUsername, message) {
 }
 
 async function getRedisData(key, client, serverName) {
+  var date = new Date();
+  // Adding 3 hours and 30 minutes to the date
+  date.setUTCHours(date.getUTCHours() + 3);
+  date.setUTCMinutes(date.getUTCMinutes() + 30);
+  var updatedHours = date.getUTCHours();
+  var updatedMinutes = date.getUTCMinutes();
+
+  if (key == "status" && (updatedHours >= 17 || (updatedHours <= 10 && updatedMinutes < 30))) {
+    return true;
+  }
+
   const data = await client.get(key)
   if (data != null) {
     const message = await makeMessage(key.toUpperCase(), data, serverName)
@@ -70,7 +81,7 @@ async function getRedisData(key, client, serverName) {
 setInterval(async () => {
   await getRedisData("btcusdt", client1, "NVME")
   await getRedisData("btcusdt", client2, "SATA")
-  // await getRedisData("status", client3, "Bourse")
+  await getRedisData("status", client3, "Bourse")
 }, 60000);
 
 
